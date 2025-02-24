@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Товар 1",
+        "description": "Описание товара 1, это довольно длинное описание для теста. Описание товара 1, это довольно длинное описание для теста.",
+        "category": "Категория 1",
+        "items_number": 10,
+        "measure": "шт",
+        "picture": "/item_image.png"
+    },
+    {
+        "name": "Товар 2",
+        "description": "Короткое описание товара 2.",
+        "category": "Категория 2",
+        "items_number": 5,
+        "measure": "шт",
+        "picture": ""
+    },
+    {
+        "name": "Товар 3",
+        "description": "Описание товара 3.",
+        "category": "Категория 3",
+        "items_number": 20,
+        "measure": "кг",
+        "picture": "/item_image.png"
+    },
+    {
+        "name": "Товар 4",
+        "description": "Короткое описание товара 4.",
+        "category": "Категория 2",
+        "items_number": 0,
+        "measure": "шт",
+        "picture": ""
+    },
+    {
+        "name": "Товар 5",
+        "description": "Описание товара 5.",
+        "category": "Категория 3",
+        "items_number": 20,
+        "measure": "кг",
+        "picture": "/item_image.png"
+    },
+    {
+        "name": "Товар 6",
+        "description": "Короткое описание товара 6.",
+        "category": "Категория 2",
+        "items_number": 10,
+        "measure": "шт",
+        "picture": ""
+    },
+    {
+        "name": "Товар 7",
+        "description": "Описание товара 7, это довольно длинное описание для теста. Описание товара 7, это довольно длинное описание для теста.",
+        "category": "Категория 3",
+        "items_number": 10,
+        "measure": "шт",
+        "picture": "/item_image.png"
+    },
+    {
+        "name": "Товар 8",
+        "description": "Короткое описание товара 8.",
+        "category": "Категория 2",
+        "items_number": 0,
+        "measure": "шт",
+        "picture": ""
+    },
+    {
+        "name": "Товар 9",
+        "description": "Короткое описание товара 9.",
+        "category": "Категория 1",
+        "items_number": 5,
+        "measure": "шт",
+        "picture": ""
+    }
+]
