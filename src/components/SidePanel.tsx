@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { idCategoryInterface } from './Categories';
+import { fetchWithAuth } from '../api';
 
 interface SidePanelProps {
     opened: boolean;
@@ -34,9 +35,8 @@ export const SidePanel: React.FC<SidePanelProps> = ({opened, setOpened, setFilte
 
     useEffect(() => {
             const fetchProducts = async () => {
-                const res = await fetch("http://localhost:3000/api/categories");
+                const data = await fetchWithAuth("http://localhost:3000/api/categories");
     
-                const data = await res.json();
                 setCategories(data);
             };
     

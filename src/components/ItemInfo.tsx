@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import { Button } from "@mui/material";
 import { itemIdInterface } from "./Item";
 import { ItemEditModal } from "./ItenEditModal";
+import { fetchWithAuth } from "../api";
 
 export const ItemInfo: React.FC = () => {
 
@@ -16,9 +17,8 @@ export const ItemInfo: React.FC = () => {
 
     useEffect(() => {
             const fetchProduct = async () => {
-                const res = await fetch(`http://localhost:3000/api/products/${index}`);
+                const data = await fetchWithAuth(`http://localhost:3000/api/products/${index}`);
     
-                const data = await res.json();
                 setItem(data);
             };
     
@@ -26,7 +26,7 @@ export const ItemInfo: React.FC = () => {
         }, []);
 
     const handleDelete = async () => {
-        await fetch(`http://localhost:3000/api/products/${item.id}`, {
+        await fetchWithAuth(`http://localhost:3000/api/products/${item.id}`, {
             method: "DELETE"
         })
         navigate("/")

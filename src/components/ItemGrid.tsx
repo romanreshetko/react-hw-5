@@ -7,6 +7,7 @@ import { FilterState } from "../App";
 import { Button } from "@mui/material";
 import { AddItemModal } from "./AddItemModal";
 import { useNavigate } from "react-router";
+import { fetchWithAuth } from "../api";
 
 export const ItemGrid: React.FC<FilterState> = ({name, available, categoryName}) => {
     
@@ -18,9 +19,8 @@ export const ItemGrid: React.FC<FilterState> = ({name, available, categoryName})
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const res = await fetch("http://localhost:3000/api/products");
+            const data = await fetchWithAuth("http://localhost:3000/api/products");
 
-            const data = await res.json();
             setItems(data);
         };
 

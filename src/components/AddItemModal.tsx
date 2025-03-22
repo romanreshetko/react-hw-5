@@ -1,6 +1,7 @@
 import { Box, Button, Modal, TextField } from "@mui/material"
 import { useState } from "react";
 import { itemInterface } from "./Item";
+import { fetchWithAuth } from "../api";
 
 interface AddItemProp {
     onClose: () => void;
@@ -21,7 +22,7 @@ export const AddItemModal: React.FC<AddItemProp> = ({onClose, isOpened}) => {
             return
         }
         const newItem: itemInterface = {name: name, description: description, category: category, number: number, measure: measure}
-        await fetch("http://localhost:3000/api/products", {
+        await fetchWithAuth("http://localhost:3000/api/products", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { CategoryEditModal } from "./CategoryEditModal";
 import { AddCategoryModal } from "./AddCategoryModal";
 import { itemIdInterface } from "./Item";
+import { fetchWithAuth } from "../api";
 
 export interface idCategoryInterface {
     id: number;
@@ -14,6 +15,7 @@ export const Categories: React.FC = () => {
 
     const [isOpenedEditModal, setIsOpenedEditModal] = useState(false);
     const [isOpenedAddModal, setIsOpenedAddModal] = useState(false);
+    const [editId, setEditId] = useState(-1);
     const [editIndex, setEditIndex] = useState(-1);
     const [categories, setCategories] = useState<idCategoryInterface[]>([]);
     const navigate = useNavigate();
@@ -21,9 +23,8 @@ export const Categories: React.FC = () => {
 
     useEffect(() => {
             const fetchProducts = async () => {
-                const res = await fetch("http://localhost:3000/api/products");
+                const data = await fetchWithAuth("http://localhost:3000/api/products");
     
-                const data = await res.json();
                 setItems(data);
             };
     
@@ -32,9 +33,8 @@ export const Categories: React.FC = () => {
     
         useEffect(() => {
             const fetchCategories = async () => {
-                const res = await fetch("http://localhost:3000/api/categories");
+                const data = await fetchWithAuth("http://localhost:3000/api/categories");
     
-                const data = await res.json();
                 setCategories(data);
             };
     
@@ -48,11 +48,12 @@ export const Categories: React.FC = () => {
             return;
         }
 
-        await fetch(`http://localhost:3000/api/category/${index}`, {
+        await fetchWithAuth(`http://localhost:3000/api/category/${index}`, {
             method: "DELETE"
         })
     }
-    const handleEdit = (index: number) => {
+    const handleEdit = (id: number, index: number) => {
+        setEditId(id);
         setEditIndex(index);
         setIsOpenedEditModal(true);
     }
@@ -73,10 +74,10 @@ export const Categories: React.FC = () => {
     }}>
         <Button onClick={() => navigate("/")} sx={{ float: "left" }}>Back</Button>
         <Stack spacing={2}>
-            {categories.map((item) => (
+            {categories.map((item, index) => (
                 <Stack direction='row' spacing={3}>
                     <Typography variant='body1'>{item.name}</Typography>
-                    <Button variant="contained" color="primary" onClick={() => handleEdit(item.id)}>
+                    <Button variant="contained" color="primary" onClick={() => handleEdit(item.id, index)}>
                         Редактировать
                     </Button>
                     <Button variant="contained" color="error" onClick={() => handleDelete(item.id)}>
@@ -91,7 +92,7 @@ export const Categories: React.FC = () => {
                 </Button>
         
         {isOpenedEditModal && (
-                    <CategoryEditModal category={categories[editIndex].name} index={editIndex} onClose={handleCloseEditModal} isOpened={isOpenedEditModal}></CategoryEditModal>
+                    <CategoryEditModal category={categories[editIndex].name} index={editId} onClose={handleCloseEditModal} isOpened={isOpenedEditModal}></CategoryEditModal>
                 )}
 
         {isOpenedAddModal && (

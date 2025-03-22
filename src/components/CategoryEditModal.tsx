@@ -1,5 +1,6 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { useState } from "react";
+import { fetchWithAuth } from "../api";
 
 interface categoryEditProps {
     category: string;
@@ -18,7 +19,7 @@ export const CategoryEditModal: React.FC<categoryEditProps> = ({category, index,
             return
         }
         const cat = {name: categoryValue}
-        await fetch(`http://localhost:3000/api/categories/${index}`, {
+        await fetchWithAuth(`http://localhost:3000/api/categories/${index}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

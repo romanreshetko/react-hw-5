@@ -1,6 +1,7 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { itemInterface } from "./Item"
 import { useState } from "react";
+import { fetchWithAuth } from "../api";
 
 interface itemEditProps {
     item: itemInterface;
@@ -22,7 +23,7 @@ export const ItemEditModal: React.FC<itemEditProps> = ({item, index, onClose}) =
             return
         }
         const newItem: itemInterface = {name: name, description: description, category: category, number: number, measure: measure}
-        await fetch(`http://localhost:3000/api/products/${index}`, {
+        await fetchWithAuth(`http://localhost:3000/api/products/${index}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

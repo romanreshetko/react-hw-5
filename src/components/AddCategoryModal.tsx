@@ -1,5 +1,6 @@
 import { Box, Button, Modal, TextField } from "@mui/material";
 import { useState } from "react";
+import { fetchWithAuth } from "../api";
 
 interface categoryEditProps {
     onClose: () => void;
@@ -16,7 +17,7 @@ export const AddCategoryModal: React.FC<categoryEditProps> = ({onClose, isOpened
             return
         }
         const cat = {name: categoryValue}
-        await fetch("http://localhost:3000/api/products", {
+        await fetchWithAuth("http://localhost:3000/api/categories", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
